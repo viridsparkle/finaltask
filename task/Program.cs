@@ -35,10 +35,25 @@ void GetLengthsOfStrings(int n)
 // 3. Создание ступенчатого массива
 int [][] CreateSteppedArray(int n, int [] lengths)
 {
-    int[][] SteppedArray = new int[n][];
+    int[][] steppedArray = new int[n][];
     for (int i = 0; i < n; i++)
     {
-        SteppedArray[i] = new int[lengths[i]];
+        steppedArray[i] = new int[lengths[i]];
     }
-    return SteppedArray;
+    return steppedArray;
 }
+
+// 4. Заполнение ступенчатого массива
+void GetStrings(int[][] steppedArray, int[] lengths)
+{
+    System.Console.WriteLine("Введите элементы каждой строки: ");
+    for (int i = 0; i < steppedArray.Length; i++)
+    {
+        for (int j = 0; j < lengths[i]; j++)
+        {
+            System.Console.Write($"Строка {i}, элемент {j} = ");
+            steppedArray[i][j] = Convert.ToInt32(Console.ReadLine());
+        }
+    }
+}
+
