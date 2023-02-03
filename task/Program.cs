@@ -57,3 +57,16 @@ void GetStrings(int[][] steppedArray, int[] lengths)
     }
 }
 
+// 5. Печать массива
+void PrintSteppedArray(int[][] steppedArray, int[] lengths)
+{
+    for (int i = 0; i < steppedArray.Length; i++)
+    {
+        for (int j = 0; j < lengths[i]; j++)
+        {
+            System.Console.Write($"{steppedArray[i][j], 5}");
+        }
+        System.Console.WriteLine();
+    }
+    System.Console.WriteLine();
+}
