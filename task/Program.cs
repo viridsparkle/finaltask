@@ -103,4 +103,9 @@ int[][] CreateNewSteppedArray(int[][] steppedArray, int[] lengths, int maxLength
 int n = GetNumberOfStrings();
 int[] lengths = GetLengthsOfStrings(n);
 int[][] array = CreateSteppedArray(n, lengths);
+GetStrings(array, lengths);
+PrintSteppedArray(array, lengths);
+
+int maxLength = GetMaxLength();
+int[][] newArray = CreateNewSteppedArray(array, lengths, maxLength);
 
