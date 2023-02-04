@@ -34,7 +34,7 @@ void GetLengthsOfStrings(int n)
 }
 
 // 3. Создание ступенчатого массива
-int [][] CreateSteppedArray(int n, int [] lengths)
+int[][] CreateSteppedArray(int n, int[] lengths)
 {
     int[][] steppedArray = new int[n][];
     for (int i = 0; i < n; i++)
@@ -76,7 +76,26 @@ void PrintSteppedArray(int[][] steppedArray, int[] lengths)
 int GetMaxLength()
 {
     System.Console.WriteLine("Введите значение максимально допустимой длины строк: ");
-    int length = Convert.ToInt32(Console.ReadLine());
-    return length;
+    int maxLength = Convert.ToInt32(Console.ReadLine());
+    return maxLength;
+}
+
+// 7. Формирование нового массива 
+int[][] CreateNewSteppedArray(int[][] steppedArray, int[] lengths, int maxLength)
+{
+    int k = 0;
+    int[][] newSteppedArray = new int[k][];
+    for (int i = 0; i < steppedArray.Length; i++)
+    {
+        if (lengths[i] <= maxLength)
+        {
+            for (int j = 0; j < lengths[i]; j++)
+            {
+                newSteppedArray[k][j] = steppedArray[i][j];
+            }
+            k++;
+        }
+    }
+    return newSteppedArray;
 }
 
