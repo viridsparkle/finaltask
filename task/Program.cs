@@ -13,7 +13,6 @@
 // 6. Поиск количества строк с длиной не больше максимального значения
 // 7. Создание и заполнение нового массива
 
-
 // 1. Ввод количества строк 
 int GetNumberOfStrings()
 {
@@ -89,19 +88,16 @@ string[] CreateNewArray(string[] array, int newN, int maxLength)
 }
 
 int n = GetNumberOfStrings();
-int[] lengths = GetLengthsOfStrings(n);
-char[][] array = CreateSteppedArray(n, lengths);
-GetStrings(array, lengths);
+string[] array = CreateArray(n);
+GetArray(array);
 System.Console.WriteLine();
-System.Console.WriteLine("Исходный масссив представлен ниже:");
-PrintSteppedArray(array, lengths);
+System.Console.WriteLine("Исходный масссив представлен ниже :");
+PrintArray(array);
 
 int maxLength = GetMaxLength();
-int newN = FindNOfStrings(lengths, maxLength);
-int[] newLengths = FindNewLengthsOfStrings(lengths, maxLength, newN);
-char[][] newArray = CreateSteppedArray(newN, newLengths);
-FillNewSteppedArray(array, lengths, maxLength, newArray);
+int newN = FindNOfStrings(array, maxLength);
+string[] newArray = CreateNewArray(array,newN, maxLength);
 System.Console.WriteLine();
-System.Console.WriteLine($"Новый массив из строк с длиной меньше или равной {maxLength}:");
-PrintSteppedArray(newArray, newLengths);
+System.Console.WriteLine($"Новый массив из строк с длиной меньше или равной {maxLength} :");
+PrintArray(newArray);
 
