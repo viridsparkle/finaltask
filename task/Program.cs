@@ -10,7 +10,8 @@
 // 3. Создание ступенчатого массива
 // 4. Заполнение ступенчатого массива
 // 5. Печать массива
-// 6. Формирование нового массива из строк с длиной <= 3
+// 6. Ввод максимальной длины строк в новом массиве
+// 7. Формирование нового массива 
 
 // 1. Ввод количества строк 
 int GetNumberOfStrings()
@@ -70,3 +71,12 @@ void PrintSteppedArray(int[][] steppedArray, int[] lengths)
     }
     System.Console.WriteLine();
 }
+
+// 6. Ввод максимальной длины строк в новом массиве
+int GetMaxLength()
+{
+    System.Console.WriteLine("Введите значение максимально допустимой длины строк: ");
+    int length = Convert.ToInt32(Console.ReadLine());
+    return length;
+}
+
