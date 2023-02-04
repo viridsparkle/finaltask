@@ -49,6 +49,7 @@ void PrintArray(string[] array)
     }
     s = s.Substring(0, s.Length - separator.Length);
     System.Console.WriteLine(s);
+    System.Console.WriteLine();
 }
 
 // 5. Ввод максимальной длины строк в новом массиве
@@ -71,19 +72,23 @@ int FindNOfStrings(string[] array, int maxLength)
 }
 
 // 7. Создание и заполнение нового массива
-string[] CreateNewArray(string[] array, int newN, int maxLength)
+void CreateNewArray(string[] array, int newN, int maxLength)
 {
-    string[] newArray = new string[newN];
-    int k = 0;
-    for (int i = 0; i < array.Length; i++)
+    if(newN != 0)
     {
-        if (array[i].Length <= maxLength)
+        string[] newArray = new string[newN];
+        int k = 0;
+        for (int i = 0; i < array.Length; i++)
         {
-            newArray[k] = array[i];
-            k++;
+            if (array[i].Length <= maxLength)
+            {
+                newArray[k] = array[i];
+                k++;
+            }
         }
+        PrintArray(newArray);
     }
-    return newArray;
+    else System.Console.WriteLine("В массиве отсутствуют строки");
 
 }
 
@@ -96,8 +101,8 @@ PrintArray(array);
 
 int maxLength = GetMaxLength();
 int newN = FindNOfStrings(array, maxLength);
-string[] newArray = CreateNewArray(array,newN, maxLength);
 System.Console.WriteLine();
 System.Console.WriteLine($"Новый массив из строк с длиной меньше или равной {maxLength} :");
-PrintArray(newArray);
+CreateNewArray(array, newN, maxLength);
+
 
