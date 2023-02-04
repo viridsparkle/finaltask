@@ -18,67 +18,42 @@
 // 1. Ввод количества строк 
 int GetNumberOfStrings()
 {
-    System.Console.Write("Введите количество строк в массиве = ");
+    System.Console.Write("Введите количество элементов в массиве = ");
     int n = Convert.ToInt32(Console.ReadLine());
     return n;
 }
 
-// 2. Ввод длины каждой из строк и формирование массива из этих значений
-int[] GetLengthsOfStrings(int n)
+// 2. Создание массива строк
+string[] CreateArray(int n)
 {
-    int[] lengths = new int[n];
-    System.Console.WriteLine("Введите длины каждой из строк: ");
-    for (int i = 0; i < n; i++)
-    {
-        System.Console.Write($"Длина строки {i} = ");
-        lengths[i] = Convert.ToInt32(Console.ReadLine());
-    }
-    return lengths;
+    return new string[n];
 }
 
-// 3. Создание ступенчатого массива
-int[][] CreateSteppedArray(int n, int[] lengths)
+// 3. Ввод строк в массив
+void GetArray(string[] array)
 {
-    int[][] steppedArray = new int[n][];
-    for (int i = 0; i < n; i++)
+    System.Console.WriteLine("Введите элементы массива: ");
+    for (int i = 0; i < array.Length; i++)
     {
-        steppedArray[i] = new int[lengths[i]];
-    }
-    return steppedArray;
-}
-
-// 4. Заполнение ступенчатого массива
-void GetStrings(int[][] steppedArray, int[] lengths)
-{
-    System.Console.WriteLine("Введите элементы каждой строки: ");
-    for (int i = 0; i < steppedArray.Length; i++)
-    {
-        for (int j = 0; j < lengths[i]; j++)
-        {
-            System.Console.Write($"Строка {i}, элемент {j} = ");
-            steppedArray[i][j] = Convert.ToInt32(Console.ReadLine());
-        }
+        System.Console.Write($"Строка {i}: ");
+        array[i] = Console.ReadLine();
     }
 }
 
-// 5. Печать массива
-void PrintSteppedArray(int[][] steppedArray, int[] lengths)
+// 4. Печать массива
+void PrintArray(string[] array)
 {
-    for (int i = 0; i < steppedArray.Length; i++)
+    string s = string.Empty;
+    string separator = ", ";
+    for (int i = 0; i < array.Length; i++)
     {
-        string s = string.Empty;
-        string separator = ", ";
-        for (int j = 0; j < lengths[i]; j++)
-        {
-            s += $"{steppedArray[i][j]}{separator}";
-        }
-        s = s.Substring(0, s.Length - separator.Length);
-        System.Console.WriteLine(s);
+        s += $"{array[i]}{separator}"; 
     }
-    System.Console.WriteLine();
+    s = s.Substring(0, s.Length - separator.Length);
+    System.Console.WriteLine(s);
 }
 
-// 6. Ввод максимальной длины строк в новом массиве
+// 5. Ввод максимальной длины строк в новом массиве
 int GetMaxLength()
 {
     System.Console.Write("Введите значение максимально допустимой длины строк: ");
@@ -86,53 +61,37 @@ int GetMaxLength()
     return maxLength;
 }
 
-// 7. Поиск количества строк с длиной <= 3
-int FindNOfStrings(int[] lengths, int maxLength)
+// 6. Поиск количества строк с длиной не больше максимального значения
+int FindNOfStrings(string[] array, int maxLength)
 {
-    int n = 0;
-    for (int i = 0; i < lengths.Length; i++)
+    int newN = 0;
+    for (int i = 0; i < array.Length; i++)
     {
-        if(lengths[i] <= maxLength) n++;
+        if (array[i].Length <= maxLength) newN++;
     }
-    return n;
+    return newN;
 }
 
-// 8. Формирование нового массива длин строк
-int[] FindNewLengthsOfStrings(int[] lengths, int maxLength, int n)
+// 7. Создание и заполнение нового массива
+string[] CreateNewArray(string[] array, int newN, int maxLength)
 {
-    int[] newLengths = new int[n];
+    string[] newArray = new string[newN];
     int k = 0;
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < array.Length; i++)
     {
-        if(lengths[i] <= maxLength)
+        if (array[i].Length <= maxLength)
         {
-            newLengths[k] = lengths[i];
+            newArray[k] = array[i];
             k++;
         }
     }
-    return newLengths;
-}
+    return newArray;
 
-// 9. Заполнение нового ступенчатого массива 
-void FillNewSteppedArray(int[][] steppedArray, int[] lengths, int maxLength, int[][] newSteppedArray)
-{
-    int k = 0;
-    for (int i = 0; i < steppedArray.Length; i++)
-    {
-        if (lengths[i] <= maxLength)
-        {
-            for (int j = 0; j < lengths[i]; j++)
-            {
-                newSteppedArray[k][j] = steppedArray[i][j];
-            }
-            k++;
-        }
-    }
 }
 
 int n = GetNumberOfStrings();
 int[] lengths = GetLengthsOfStrings(n);
-int[][] array = CreateSteppedArray(n, lengths);
+char[][] array = CreateSteppedArray(n, lengths);
 GetStrings(array, lengths);
 System.Console.WriteLine();
 System.Console.WriteLine("Исходный масссив представлен ниже:");
@@ -141,7 +100,7 @@ PrintSteppedArray(array, lengths);
 int maxLength = GetMaxLength();
 int newN = FindNOfStrings(lengths, maxLength);
 int[] newLengths = FindNewLengthsOfStrings(lengths, maxLength, newN);
-int[][] newArray = CreateSteppedArray(newN, newLengths);
+char[][] newArray = CreateSteppedArray(newN, newLengths);
 FillNewSteppedArray(array, lengths, maxLength, newArray);
 System.Console.WriteLine();
 System.Console.WriteLine($"Новый массив из строк с длиной меньше или равной {maxLength}:");
