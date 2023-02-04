@@ -22,7 +22,7 @@ int GetNumberOfStrings()
 }
 
 // 2. Ввод длины каждой из строк и формирование массива из этих значений
-void GetLengthsOfStrings(int n)
+int[] GetLengthsOfStrings(int n)
 {
     int[] lengths = new int[n];
     System.Console.WriteLine("Введите длины каждой из строк: ");
@@ -31,6 +31,7 @@ void GetLengthsOfStrings(int n)
         System.Console.Write($"Длина строки {i} = ");
         lengths[i] = Convert.ToInt32(Console.ReadLine());
     }
+    return lengths;
 }
 
 // 3. Создание ступенчатого массива
@@ -98,4 +99,8 @@ int[][] CreateNewSteppedArray(int[][] steppedArray, int[] lengths, int maxLength
     }
     return newSteppedArray;
 }
+
+int n = GetNumberOfStrings();
+int[] lengths = GetLengthsOfStrings(n);
+int[][] array = CreateSteppedArray(n, lengths);
 
