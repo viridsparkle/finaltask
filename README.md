@@ -11,5 +11,5 @@
 7. Создание и заполнение нового массива
 
 [Программа](task/Program.cs)
-[Блок-схема 7 метода](task\diagrams.drawio)
+[Блок-схема 7 метода](task/diagrams.drawio)
 
